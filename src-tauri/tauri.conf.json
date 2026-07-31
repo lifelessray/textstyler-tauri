@@ -17,7 +17,8 @@
       "active": true,
       "identifier": "com.lifelessray.textstyler",
       "icon": [
-        "icons/icon.ico"
+        "icons/icon.ico",
+        "icons/icon.png"
       ],
       "targets": "all"
     },
