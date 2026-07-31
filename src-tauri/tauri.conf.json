@@ -1,0 +1,34 @@
+{
+  "build": {
+    "beforeBuildCommand": "",
+    "beforeDevCommand": "",
+    "devPath": "../Public",
+    "distDir": "../Public"
+  },
+  "package": {
+    "productName": "TextStyler",
+    "version": "0.1.0"
+  },
+  "tauri": {
+    "allowlist": {
+      "all": false
+    },
+    "bundle": {
+      "active": true,
+      "identifier": "com.lifelessray.textstyler",
+      "targets": "all"
+    },
+    "security": {
+      "csp": null
+    },
+    "windows": [
+      {
+        "fullscreen": false,
+        "resizable": true,
+        "title": "TextStyler",
+        "width": 1000,
+        "height": 800
+      }
+    ]
+  }
+}
