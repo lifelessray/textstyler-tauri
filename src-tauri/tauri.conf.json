@@ -16,6 +16,9 @@
     "bundle": {
       "active": true,
       "identifier": "com.lifelessray.textstyler",
+      "icon": [
+        "icons/icon.ico"
+      ],
       "targets": "all"
     },
     "security": {
