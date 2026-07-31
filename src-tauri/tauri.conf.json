@@ -2,8 +2,8 @@
   "build": {
     "beforeBuildCommand": "",
     "beforeDevCommand": "",
-    "devPath": "../Public",
-    "distDir": "../Public"
+    "devPath": "../public",
+    "distDir": "../public"
   },
   "package": {
     "productName": "TextStyler",
