@@ -1,78 +1,131 @@
-name: Build TextStyler Desktop
+Current runner version: '2.336.0'
+Runner Image Provisioner
+Operating System
+Runner Image
+GITHUB_TOKEN Permissions
+Secret source: Actions
+Prepare workflow directory
+Prepare all required actions
+Getting action download info
+Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+Download action repository 'dtolnay/rust-toolchain@stable' (SHA:4cda84d5c5c54efe2404f9d843567869ab1699d4)
+Download action repository 'tauri-apps/tauri-action@v0' (SHA:84b9d35b5fc46c1e45415bdb6144030364f7ebc5)
+Complete job name: build-tauri (windows-latest)
+4s
+git version 2.55.0.windows.2
 
-<<<<<<< HEAD
-on:
-  workflow_dispatch:
-
-jobs:
-  build-tauri:
-    permissions:
-      contents: write
-    strategy:
-      fail-fast: false
-      matrix:
-        platform: [macos-latest, ubuntu-22.04, windows-latest]
-    runs-on: ${{ matrix.platform }}
+Temporarily overriding HOME='D:\a\_temp\cab6c39e-a34b-4251-aac8-072bb7610703' before making global git config changes
+Adding repository directory to the temporary git global config as a safe directory
+"C:\Program Files\Git\bin\git.exe" config --global --add safe.directory D:\a\textstyler-tauri\textstyler-tauri
+Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Run actions/checkout@v4
+Syncing repository: lifelessray/textstyler-tauri
+Getting Git version info
+  Working directory is 'D:\a\textstyler-tauri\textstyler-tauri'
+  "C:\Program Files\Git\bin\git.exe" version
+  Deleting the contents of 'D:\a\textstyler-tauri\textstyler-tauri'
+Initializing the repository
+Disabling automatic garbage collection
+Setting up auth
+  "C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+  "C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+  "C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+  "C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+  "C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+  "C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+  "C:\Program Files\Git\bin\git.exe" config --local http.https://github.com/.extraheader "AUTHORIZATION: basic ***"
+Fetching the repository
+  "C:\Program Files\Git\bin\git.exe" -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +8472b61593483561c5f7c00c6a96d721b4e97fa1:refs/remotes/origin/main
+  From https://github.com/lifelessray/textstyler-tauri
+   * [new ref]         8472b61593483561c5f7c00c6a96d721b4e97fa1 -> origin/main
+Determining the checkout info
+"C:\Program Files\Git\bin\git.exe" sparse-checkout disable
+"C:\Program Files\Git\bin\git.exe" config --local --unset-all extensions.worktreeConfig
+Checking out the ref
+"C:\Program Files\Git\bin\git.exe" log -1 --format=%H
+8472b61593483561c5f7c00c6a96d721b4e97fa1
+0s
+20s
+Run dtolnay/rust-toolchain@stable
+Run : parse toolchain version
+0s
+Run : construct rustup command line
+0s
+Run : construct rustup command line
     
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Install dependencies (Ubuntu only)
-        if: matrix.platform == 'ubuntu-22.04'
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y libwebkit2gtk-4.1-dev build-essential curl wget file libssl-dev libgtk-3-dev libayatana-appindicator3-dev librsvg2-dev
-
-      - name: Install Rust
-        uses: dtolnay/rust-toolchain@stable
-
-      - name: Build Tauri App
-        uses: tauri-apps/tauri-action@v0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tagName: build-v${{ github.run_number }}
-          releaseName: "TextStyler Desktop Build #${{ github.run_number }}"
-          releaseBody: "Automated native build for Windows, macOS, and Linux."
-          releaseDraft: false
-          prerelease: false
-=======
-on:
-  workflow_dispatch:
-
-jobs:
-  build-tauri:
-    permissions:
-      contents: write
-    strategy:
-      fail-fast: false
-      matrix:
-        platform: [macos-latest, ubuntu-22.04, windows-latest]
-    runs-on: ${{ matrix.platform }}
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Install dependencies (Ubuntu only)
-        if: matrix.platform == 'ubuntu-22.04'
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y libwebkit2gtk-4.1-dev build-essential curl wget file libssl-dev libgtk-3-dev libayatana-appindicator3-dev librsvg2-dev
-
-      - name: Install Rust
-        uses: dtolnay/rust-toolchain@stable
-
-      - name: Build Tauri App
-        uses: tauri-apps/tauri-action@v0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tagName: build-v${{ github.run_number }}
-          releaseName: "TextStyler Desktop Build #${{ github.run_number }}"
-          releaseBody: "Automated native build for Windows, macOS, and Linux."
-          releaseDraft: false
-          prerelease: false
-
->>>>>>> 8472b61593483561c5f7c00c6a96d721b4e97fa1
+Run : set $CARGO_HOME
+0s
+Run : install rustup if needed on windows
+0s
+rustup toolchain install stable
+17s
+Run rustup toolchain install stable --profile minimal --no-self-update
+    
+  info: syncing channel updates for stable-x86_64-pc-windows-msvc
+  info: latest update on 2026-07-16 for version 1.97.1 (8bab26f4f 2026-07-14)
+  info: removing previous version of component clippy
+  info: removing previous version of component rustfmt
+  info: removing previous version of component rust-std for target x86_64-pc-windows-gnu
+  info: removing previous version of component rust-std for target i686-pc-windows-msvc
+  info: removing previous version of component cargo
+  info: removing previous version of component rust-std
+  info: removing previous version of component rustc
+  info: downloading 7 components
+    stable-x86_64-pc-windows-msvc updated - rustc 1.97.1 (8bab26f4f 2026-07-14) (from rustc 1.97.0 (2d8144b78 2026-07-07))
+Run rustup default stable
+0s
+Run rustup default stable
+    
+  info: using existing install for stable-x86_64-pc-windows-msvc
+  info: default toolchain set to stable-x86_64-pc-windows-msvc
+    stable-x86_64-pc-windows-msvc unchanged - rustc 1.97.1 (8bab26f4f 2026-07-14)
+Run : create cachekey
+1s
+Run : create cachekey
+    
+Run : disable incremental compilation
+0s
+Run : enable colors in Cargo output
+0s
+Run : enable Cargo sparse registry
+0s
+Run : enable Cargo sparse registry
+    
+Run : work around spurious network errors in curl 8.0
+0s
+Run rustc +stable --version --verbose
+0s
+Run rustc +stable --version --verbose
+    
+  rustc 1.97.1 (8bab26f4f 2026-07-14)
+  binary: rustc
+  commit-hash: 8bab26f4f68e0e26f0bb7960be334d5b520ea452
+  commit-date: 2026-07-14
+  host: x86_64-pc-windows-msvc
+  release: 1.97.1
+  LLVM version: 22.1.6
+8s
+Run tauri-apps/tauri-action@v0
+running npm [ 'install', '-g', '@tauri-apps/cli@v1' ]
+added 3 packages in 3s
+1 package is looking for funding
+  run `npm fund` for details
+running tauri [ 'init', '--ci' ]
+Updating tauri.conf.json file according to these configurations: {"identifier":"com.tauri.dev","_isV2":false,"productName":"","version":"","frontendDist":"../dist","beforeBuildCommand":""}
+Could not determine package name and version.
+2s
+Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Post job cleanup.
+"C:\Program Files\Git\bin\git.exe" version
+git version 2.55.0.windows.2
+Temporarily overriding HOME='D:\a\_temp\9ba751c0-50f7-471f-8073-df67ca44cb52' before making global git config changes
+Adding repository directory to the temporary git global config as a safe directory
+"C:\Program Files\Git\bin\git.exe" config --global --add safe.directory D:\a\textstyler-tauri\textstyler-tauri
+"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+http.https://github.com/.extraheader
+"C:\Program Files\Git\bin\git.exe" config --local --unset-all http.https://github.com/.extraheader
+"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
