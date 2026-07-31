@@ -12,3 +12,7 @@ tauri-build = { version = "1", features = ["custom-protocol"] }
 tauri = { version = "1", features = ["custom-protocol"] }
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
+
+[features]
+# Forward a package feature to the tauri dependency feature so cargo --features custom-protocol works
+custom-protocol = ["tauri/custom-protocol"]
